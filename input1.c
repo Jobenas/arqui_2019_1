@@ -3,14 +3,19 @@
 
 int n = 20;
 
+void cAvg(float *array, int size, float *res);
+
 int main()
 {
-    float *vals;
+    //float *vals;
+    float vals[n];
     int size;
     int i = 0;
     int flag = 0;
 
-    vals = malloc(n * sizeof(float));
+    float result;
+
+    //vals = malloc(n * sizeof(float));
 
     while (flag == 0 && i < 20)
     {
@@ -23,7 +28,15 @@ int main()
         i++;
     }
 
-    size = i;
+    if(i < 20)
+    {
+        size = i - 1;    
+    }
+    else
+    {
+        size = i;   
+    }
+      
 
     printf("\nCantidad de Valores ingresados: %d\n", size);
     printf("\nValores ingresados:\n");
@@ -32,5 +45,21 @@ int main()
         printf("%f\n",*(vals+i));
     }
 
+    cAvg(vals, size, &result);
+
+    printf("\nEl promedio es: %f\n",result);
+
     return 0;
+}
+
+void cAvg(float *array, int size, float *res)
+{
+    float accum = 0;
+
+    for(int i=0; i<size; i++)
+    {
+        accum += array[i];
+    }
+
+    res[0] = accum/(float)size;
 }
